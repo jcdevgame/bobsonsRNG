@@ -18,6 +18,9 @@ var titles = [
 // Initialize an empty inventory with 14 slots
 const inventory = Array(14).fill(null);
 
+// Initialize an empty object to store unlocked titles
+const unlockedTitles = {};
+
 // Function to get a random title from the titles array
 function getRandomTitle() {
     const totalRarity = titles.reduce((sum, title) => {
@@ -39,9 +42,11 @@ function getRandomTitle() {
             // Update the inventory slots
             for (let i = 0; i < inventory.length; i++) {
                 if (generatedTitle === titles[i].split('=')[0].trim()) {
+                    inventory[i] = generatedTitle;
                     document.getElementById(`inventory-slot${i + 1}`).innerHTML = generatedTitle;
-                    // Save to local storage
-                    localStorage.setItem(`inventory-slot${i + 1}`, generatedTitle);
+                    unlockedTitles[generatedTitle] = true;
+
+                    saveUnlockedTitles();
                 }
             }
 
@@ -50,24 +55,17 @@ function getRandomTitle() {
     }
 }
 
-// Load saved titles from local storage
-for (let i = 0; i < inventory.length; i++) {
-    const savedTitle = localStorage.getItem(`inventory-slot${i + 1}`);
-    if (savedTitle) {
-        document.getElementById(`inventory-slot${i + 1}`).innerHTML = savedTitle;
+function loadUnlockedTitles() {
+    const savedUnlockedTitles = localStorage.getItem('unlockedTitles');
+    if (savedUnlockedTitles) {
+        Object.assign(unlockedTitles, JSON.parse(savedUnlockedTitles));
     }
+}
+
+function saveUnlockedTitles() {
+    localStorage.setItem('unlockedTitles', JSON.stringify(unlockedTitles));
 }
 
 // Example usage:
 getRandomTitle(); // Generate a title initially
-
-function saveInventory() {
-    for (let i = 0; i < inventory.length; i++) {
-        const title = document.getElementById(`inventory-slot${i + 1}`).innerHTML;
-        localStorage.setItem(`inventory-slot${i + 1}`, title);
-    }
-}
-
-window.onload = function(){
-    saveInventory();
-}
+loadUnlockedTitles(); // Load saved unlocked titles on page load
