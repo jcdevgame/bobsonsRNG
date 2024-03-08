@@ -59,6 +59,13 @@ function loadUnlockedTitles() {
     const savedUnlockedTitles = localStorage.getItem('unlockedTitles');
     if (savedUnlockedTitles) {
         Object.assign(unlockedTitles, JSON.parse(savedUnlockedTitles));
+
+        // Update the display for each title
+        for (const title in unlockedTitles) {
+            if (unlockedTitles[title]) {
+                document.getElementById(title).innerHTML = `${title} (Unlocked)`;
+            }
+        }
     }
 }
 
