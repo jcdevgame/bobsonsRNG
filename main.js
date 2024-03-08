@@ -15,13 +15,8 @@ var titles = [
     "Bobson's Legend 0.05% = 0.05",
 ];
 
-// Initialize an empty inventory with 14 slots
-const inventory = Array(14).fill(null);
+var titlesUnlocked = ["T0", "T1", "T2", "T3", "T4", "T5", "T6", "T7", "T8", "T9", "T10", "T11", "T12", "T13", "T14"]
 
-// Initialize an empty object to store unlocked titles
-const unlockedTitles = {};
-
-// Function to get a random title from the titles array
 function getRandomTitle() {
     const totalRarity = titles.reduce((sum, title) => {
         const rarity = parseFloat(title.split('=')[1].trim());
@@ -39,40 +34,109 @@ function getRandomTitle() {
             const generatedTitle = title.split('=')[0].trim();
             receivedTitle.innerHTML = `Generated Title: ${generatedTitle}`;
 
-            // Update the inventory slots
-            for (let i = 0; i < inventory.length; i++) {
-                if (generatedTitle === titles[i].split('=')[0].trim()) {
-                    inventory[i] = generatedTitle;
-                    document.getElementById(`inventory-slot${i + 1}`).innerHTML = generatedTitle;
-                    unlockedTitles[generatedTitle] = true;
+            if (generatedTitle === "Unlucky Ducky 45%") {
+                document.getElementById("inventory-slot1").innerHTML = "1. Unlucky Ducky 45%";
 
-                    saveUnlockedTitles();
-                }
+                titlesUnlocked[1] = true
+            }
+            else if (generatedTitle == "Common 21.95%") {
+                document.getElementById("inventory-slot2").innerHTML = "2. Common 21.95%";
+
+                titlesUnlocked[2] = true
+            }
+            else if (generatedTitle == "Good 15%") {
+                document.getElementById("inventory-slot3").innerHTML = "3. Good 15%";
+
+                titlesUnlocked[3] = true
+            }
+            else if (generatedTitle == "Nice 10%") {
+                document.getElementById("inventory-slot4").innerHTML = "4. Nice 10%";
+
+                titlesUnlocked[4] = true
+            }
+            else if (generatedTitle == "Amazing 5%") {
+                document.getElementById("inventory-slot5").innerHTML = "5. Amazing 5%";
+
+                titlesUnlocked[5] = true
+            }
+            else if (generatedTitle == "poop 1%") {
+                document.getElementById("inventory-slot6").innerHTML = "6. poop 1%";
+
+                titlesUnlocked[6] = true
+            }
+            else if (generatedTitle == "chicken 0.5%") {
+                document.getElementById("inventory-slot7").innerHTML = "7. chicken 0.5%";
+
+                titlesUnlocked[7] = true
+            }
+            else if (generatedTitle == "mastermind 0.5%") {
+                document.getElementById("inventory-slot8").innerHTML = "8. mastermind 0.5%";
+
+                titlesUnlocked[8] = true
+            }
+            else if (generatedTitle == "toiletman 0.25%") {
+                document.getElementById("inventory-slot9").innerHTML = "9. toiletman 0.25%";
+
+                titlesUnlocked[9] = true
+            }
+            else if (generatedTitle == "ohiogyatt 0.25%") {
+                document.getElementById("inventory-slot10").innerHTML = "10. ohiogyatt 0.25%";
+
+                titlesUnlocked[10] = true
+            }
+            else if (generatedTitle == "chickensoup 0.15%") {
+                document.getElementById("inventory-slot11").innerHTML = "11. chickensoup 0.15%";
+
+                titlesUnlocked[11] = true
+            }
+            else if (generatedTitle == "friedchicken 0.15%") {
+                document.getElementById("inventory-slot12").innerHTML = "12. friedchicken 0.15%";
+
+                titlesUnlocked[12] = true
+            }
+            else if (generatedTitle == "W 0.2") {
+                document.getElementById("inventory-slot13").innerHTML = "13. W 0.2";
+
+                titlesUnlocked[13] = true
+            }
+            else if (generatedTitle == "Bobson's Legend 0.05%") {
+                document.getElementById("inventory-slot14").innerHTML = "14. Bobson's Legend 0.05%";
+
+                titlesUnlocked[14] = true
             }
 
             break;
         }
     }
+
+    // Fallback: Return an "Unknown Title"
+    return "Unknown Title";
 }
 
-function loadUnlockedTitles() {
-    const savedUnlockedTitles = localStorage.getItem('unlockedTitles');
-    if (savedUnlockedTitles) {
-        Object.assign(unlockedTitles, JSON.parse(savedUnlockedTitles));
+window.onload = function save(){
+    localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
+}
 
-        // Update the display for each title
-        for (const title in unlockedTitles) {
-            if (unlockedTitles[title]) {
-                document.getElementById(title).innerHTML = `${title} (Unlocked)`;
+function loadSaves() {
+    const savedTitlesUnlocked = localStorage.getItem('titlesUnlocked');
+    const loadedTitlesUnlocked = JSON.parse(savedTitlesUnlocked);
+
+    for (var i = 1; i < 14; i++) {
+        if (loadedTitlesUnlocked[i] === true) {
+            const elementId = "inventory-slot" + i;
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.innerHTML = "Unlocked!";
+            } else {
+                console.error(`Element with ID ${elementId} not found.`);
             }
         }
     }
 }
 
-function saveUnlockedTitles() {
-    localStorage.setItem('unlockedTitles', JSON.stringify(unlockedTitles));
-}
+
+loadSaves();
 
 // Example usage:
-getRandomTitle(); // Generate a title initially
-loadUnlockedTitles(); // Load saved unlocked titles on page load
+const randomTitle = getRandomTitle();
+console.log(`Your randomly generated title: ${randomTitle}`);
