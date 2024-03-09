@@ -141,10 +141,6 @@ function getRandomTitle() {
     return "Unknown Title";
 }
 
-window.onload = function save(){
-    localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
-}
-
 function loadSaves() {
     const savedTitlesUnlocked = localStorage.getItem('titlesUnlocked');
     const loadedTitlesUnlocked = JSON.parse(savedTitlesUnlocked);
