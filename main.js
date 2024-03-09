@@ -32,77 +32,105 @@ function getRandomTitle() {
         currentSum += rarity;
         if (randomIndex < currentSum) {
             const generatedTitle = title.split('=')[0].trim();
-            receivedTitle.innerHTML = `Generated Title: ${generatedTitle}`;
+            receivedTitle.innerHTML = "Generated Title:" + generatedTitle;
 
             if (generatedTitle === "Unlucky Ducky 45%") {
                 document.getElementById("inventory-slot1").innerHTML = "1. Unlucky Ducky 45%";
 
                 titlesUnlocked[1] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "Common 21.95%") {
                 document.getElementById("inventory-slot2").innerHTML = "2. Common 21.95%";
 
                 titlesUnlocked[2] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "Good 15%") {
                 document.getElementById("inventory-slot3").innerHTML = "3. Good 15%";
 
                 titlesUnlocked[3] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "Nice 10%") {
                 document.getElementById("inventory-slot4").innerHTML = "4. Nice 10%";
 
                 titlesUnlocked[4] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "Amazing 5%") {
                 document.getElementById("inventory-slot5").innerHTML = "5. Amazing 5%";
 
                 titlesUnlocked[5] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "poop 1%") {
                 document.getElementById("inventory-slot6").innerHTML = "6. poop 1%";
 
                 titlesUnlocked[6] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "chicken 0.5%") {
                 document.getElementById("inventory-slot7").innerHTML = "7. chicken 0.5%";
 
                 titlesUnlocked[7] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "mastermind 0.5%") {
                 document.getElementById("inventory-slot8").innerHTML = "8. mastermind 0.5%";
 
                 titlesUnlocked[8] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "toiletman 0.25%") {
                 document.getElementById("inventory-slot9").innerHTML = "9. toiletman 0.25%";
 
                 titlesUnlocked[9] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "ohiogyatt 0.25%") {
                 document.getElementById("inventory-slot10").innerHTML = "10. ohiogyatt 0.25%";
 
                 titlesUnlocked[10] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "chickensoup 0.15%") {
                 document.getElementById("inventory-slot11").innerHTML = "11. chickensoup 0.15%";
 
                 titlesUnlocked[11] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "friedchicken 0.15%") {
                 document.getElementById("inventory-slot12").innerHTML = "12. friedchicken 0.15%";
 
                 titlesUnlocked[12] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "W 0.2") {
                 document.getElementById("inventory-slot13").innerHTML = "13. W 0.2";
 
                 titlesUnlocked[13] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
             else if (generatedTitle == "Bobson's Legend 0.05%") {
                 document.getElementById("inventory-slot14").innerHTML = "14. Bobson's Legend 0.05%";
 
                 titlesUnlocked[14] = true
+
+                 localStorage.setItem('titlesUnlocked', JSON.stringify(titlesUnlocked));
             }
 
             break;
