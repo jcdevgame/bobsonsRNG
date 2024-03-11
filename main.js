@@ -146,7 +146,7 @@ function loadSaves() {
     const loadedTitlesUnlocked = JSON.parse(savedTitlesUnlocked);
 
     for (var i = 1; i < 14; i++) {
-        if (loadedTitlesUnlocked[i] === true) {
+        if (loadedTitlesUnlocked[i] == true) {
             const elementId = "inventory-slot" + i;
             const element = document.getElementById(elementId);
             if (element) {
